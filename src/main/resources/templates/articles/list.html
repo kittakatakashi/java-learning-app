@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>記事一覧 - ブログ</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<div class="container">
+    <h1>記事一覧</h1>
+    <div class="card" th:each="article : ${articles}">
+        <h2><a th:href="@{'/articles/' + ${article.id}}" th:text="${article.title}"></a></h2>
+        <div class="meta">
+            <span th:text="${article.author.username}"></span> ・
+            <span th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
+        </div>
+    </div>
+    <p th:if="${#lists.isEmpty(articles)}">まだ記事がありません。</p>
+</div>
+</body>
+</html>

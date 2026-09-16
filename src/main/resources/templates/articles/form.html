@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${article != null} ? '記事編集 - ブログ' : '記事作成 - ブログ'"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<div class="container">
+    <div class="card">
+        <h1 th:text="${article != null} ? '記事編集' : '記事作成'"></h1>
+        <form th:action="${article != null} ? @{'/articles/' + ${article.id} + '/edit'} : @{/articles}" method="post">
+            <input type="text" name="title" placeholder="タイトル" th:value="${article != null} ? ${article.title} : ''" required autofocus>
+            <textarea name="content" placeholder="本文" required th:text="${article != null} ? ${article.content} : ''"></textarea>
+            <button type="submit" th:text="${article != null} ? '更新する' : '投稿する'"></button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

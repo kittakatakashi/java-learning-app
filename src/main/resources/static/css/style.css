@@ -1,0 +1,111 @@
+body {
+    font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Segoe UI", sans-serif;
+    background-color: #f7f7f9;
+    color: #222;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #2c3e50;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 16px;
+}
+
+.navbar .brand {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.container {
+    max-width: 720px;
+    margin: 32px auto;
+    padding: 0 16px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 a {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+.meta {
+    color: #888;
+    font-size: 0.85em;
+    margin-bottom: 8px;
+}
+
+.content {
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
+
+form.inline {
+    display: inline;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+button, .btn {
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button.danger, .btn.danger {
+    background-color: #c0392b;
+}
+
+.error {
+    color: #c0392b;
+    margin-bottom: 12px;
+}
+
+.success {
+    color: #27ae60;
+    margin-bottom: 12px;
+}
+
+.comment {
+    border-top: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.actions {
+    margin-top: 8px;
+}

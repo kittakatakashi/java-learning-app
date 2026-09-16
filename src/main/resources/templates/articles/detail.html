@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${article.title} + ' - ブログ'"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<div class="container">
+    <div class="card">
+        <h1 th:text="${article.title}"></h1>
+        <div class="meta">
+            <span th:text="${article.author.username}"></span> ・
+            <span th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
+        </div>
+        <p class="content" th:text="${article.content}"></p>
+
+        <div class="actions" th:if="${currentUsername != null and currentUsername == article.author.username}">
+            <a class="btn" th:href="@{'/articles/' + ${article.id} + '/edit'}">編集</a>
+            <form class="inline" th:action="@{'/articles/' + ${article.id} + '/delete'}" method="post"
+                  onsubmit="return confirm('この記事を削除しますか？');">
+                <button type="submit" class="danger">削除</button>
+            </form>
+        </div>
+    </div>
+
+    <h2>コメント</h2>
+    <div class="card comment" th:each="comment : ${comments}">
+        <div class="meta" th:text="${comment.author.username} + ' ・ ' + ${#temporals.format(comment.createdAt, 'yyyy-MM-dd HH:mm')}"></div>
+        <p th:text="${comment.content}"></p>
+        <form th:if="${currentUsername != null and currentUsername == comment.author.username}"
+              class="inline"
+              th:action="@{'/articles/' + ${article.id} + '/comments/' + ${comment.id} + '/delete'}"
+              method="post"
+              onsubmit="return confirm('このコメントを削除しますか？');">
+            <button type="submit" class="danger">削除</button>
+        </form>
+    </div>
+    <p th:if="${#lists.isEmpty(comments)}">まだコメントがありません。</p>
+
+    <div class="card" sec:authorize="isAuthenticated()">
+        <h3>コメントを投稿</h3>
+        <form th:action="@{'/articles/' + ${article.id} + '/comments'}" method="post">
+            <textarea name="content" placeholder="コメントを入力" required></textarea>
+            <button type="submit">投稿する</button>
+        </form>
+    </div>
+    <p sec:authorize="isAnonymous()">コメントの投稿には <a th:href="@{/login}">ログイン</a> が必要です。</p>
+</div>
+</body>
+</html>

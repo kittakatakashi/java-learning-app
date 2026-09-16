@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<div th:fragment="nav" class="navbar">
+    <div>
+        <a th:href="@{/articles}" class="brand">ブログ</a>
+        <a th:href="@{/articles}">記事一覧</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/articles/new}">新規投稿</a>
+    </div>
+    <div>
+        <span sec:authorize="isAuthenticated()" sec:authentication="name" style="color:#fff; margin-right:16px;"></span>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" class="inline">
+            <button type="submit">ログアウト</button>
+        </form>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}">ログイン</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/register}">新規登録</a>
+    </div>
+</div>
+</body>
+</html>

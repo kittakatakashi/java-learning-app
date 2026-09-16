@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>見つかりません - ブログ</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<div class="container">
+    <div class="card">
+        <h1>ページが見つかりません</h1>
+        <p>お探しのページは存在しないか、削除された可能性があります。</p>
+        <a class="btn" th:href="@{/articles}">記事一覧へ戻る</a>
+    </div>
+</div>
+</body>
+</html>
